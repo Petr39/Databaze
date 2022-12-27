@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Databaze
 {
+
+    //Zatím nic nedělá - třída je v procesu
     internal class Zvire
     {
 

@@ -15,6 +15,7 @@
         /// </summary>
         private bool Plnolety => Vek >= 18;
 
+        
 
         /// <summary>
         /// Vlastnost o úmrtí
@@ -63,7 +64,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("ID:CLO{0}  {1}  {2} roků a {3}", Poradi, Jmeno, Vek, JePlnoletyANaZivu());
+            return String.Format("ID:CLO{0}  {1} ", Poradi, Jmeno);
         }
 
         /// <summary>
@@ -73,7 +74,7 @@
         {
             Console.WriteLine("Jméno: {0}", Jmeno);
             Console.WriteLine("Věk: {0}", Vek);
-            Console.WriteLine("{0}", zprava);
+            Console.WriteLine("{0}", JePlnoletyANaZivu());
             Console.WriteLine("Vloženy data: {0}", Datum);
         }
 
@@ -83,6 +84,7 @@
             private string OblibenaBarva { get; set; }
             private int CisloBot { get; set; }
 
+           
         }
     }
 }

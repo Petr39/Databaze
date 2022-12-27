@@ -65,7 +65,7 @@
                 Console.WriteLine(VypisPomlcky());
             }
 
-            Console.WriteLine("Zadej ID osoby se pro víc infomrací....");
+            Console.WriteLine("Zadej ID osoby pro víc informací....");
             int IdOsoby = int.Parse(Console.ReadLine());
             NajdiOsobu(IdOsoby);
         }
@@ -108,7 +108,6 @@
             foreach (var item in osoba)
             {                
                item.VypisOsobu();
-                
             }
         }
     }

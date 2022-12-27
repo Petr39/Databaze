@@ -21,14 +21,14 @@ while (pokracovat)
 
     string volba = Console.ReadLine();
     switch (volba)
-    {
-        
+    {        
         case "1":            
             seznam.PridatOsobu();
             break;
         case "2":
             Console.Clear();
             seznam.VypisOsoby();
+            Console.WriteLine();
             Console.WriteLine("Pro pokračování stiskni Enter");
             break;
         case "3":
