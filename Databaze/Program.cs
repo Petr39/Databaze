@@ -34,7 +34,7 @@ while (pokracovat)
         case "3":
             Console.WriteLine("Díky za použití aplikace");
             pokracovat = false;
-            break;
+            break;            
         default:
             Console.WriteLine("Špatně zadaná volba, zadej znovu ve tvaru čísla ");
             break;

@@ -19,7 +19,7 @@
         private int IdOsoby;
 
         /// <summary>
-        /// KOnstruktor s instancí Listu lide
+        /// Konstruktor s instancí Listu lide
         /// </summary>
         public SeznamLidi()
         {
@@ -38,14 +38,16 @@
             int vek;
             while (!int.TryParse(Console.ReadLine(), out vek))
                 Console.WriteLine("Zadej prosím věk v číselné podobě");
+            int UnikatniId;
             IdOsoby = Id;
-            Id++;
-            clovek = new Clovek(jmeno, vek, datum, IdOsoby);
+            UnikatniId = IdOsoby;
+            clovek = new Clovek(jmeno, vek, datum, UnikatniId);
             if (clovek != null)
             {
                 lide.Add(clovek);
-            //Console.WriteLine(UkladamData());
-            Console.WriteLine("Osoba byla přidána do databáze");
+                Id++;
+                //Console.WriteLine(UkladamData());
+                Console.WriteLine("Osoba byla přidána do databáze");
             }
             else
             {
@@ -59,10 +61,13 @@
         {
             foreach (var item in lide)
             {
-                Console.WriteLine(item);
-                //clovek.VypisOsobu();
+                Console.WriteLine(item);               
                 Console.WriteLine(VypisPomlcky());
             }
+
+            Console.WriteLine("Zadej ID osoby se pro víc infomrací....");
+            int IdOsoby = int.Parse(Console.ReadLine());
+            NajdiOsobu(IdOsoby);
         }
         /// <summary>
         /// Vypíše pomlčky do linky pod text
@@ -91,6 +96,20 @@
                 Console.Write(s);
             }
             return s;
+        }
+
+        /// <summary>
+        /// Vypíše osoby podle zadaného ID
+        /// </summary>
+        /// <param name="cislo"></param>
+        public void NajdiOsobu(int cislo)
+        {         
+            var osoba = lide.Where(a => a.Poradi == cislo);
+            foreach (var item in osoba)
+            {                
+               item.VypisOsobu();
+                
+            }
         }
     }
 }

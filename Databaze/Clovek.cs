@@ -1,7 +1,7 @@
 ﻿namespace Databaze
 {
     public class Clovek
-    {   
+    {
         /// <summary>
         /// Jméno a příjmení osoby
         /// </summary>
@@ -16,14 +16,16 @@
         private bool Plnolety => Vek >= 18;
 
 
-
+        /// <summary>
+        /// Vlastnost o úmrtí
+        /// </summary>
         private bool Mrtev => Vek > 100;
         /// <summary>
         /// Vlastnost privátní zprávy o plnoletosti ve stringu
         /// </summary>
         private string zprava;
 
-         public int Poradi { get;private set; }
+        public int Poradi { get; private set; }
 
 
         /// <summary>
@@ -49,8 +51,8 @@
             zprava = "";
             if (Plnolety)
             {
-                if (Mrtev)zprava = " už nežije";
-                else zprava = "je plnoletý/á";           
+                if (Mrtev) zprava = "už nežije";
+                else zprava = "je plnoletý/á";
             }
             else zprava = "není plnoletý/á";
             return zprava;
@@ -61,7 +63,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("ID:{0}  {1}  {2} roků a {3} - datum vložení: {4}",Poradi, Jmeno, Vek, JePlnoletyANaZivu(),Datum);
+            return String.Format("ID:CLO{0}  {1}  {2} roků a {3}", Poradi, Jmeno, Vek, JePlnoletyANaZivu());
         }
 
         /// <summary>
@@ -69,11 +71,18 @@
         /// </summary>
         public void VypisOsobu()
         {
-            Console.WriteLine("Jméno: {0}",Jmeno);
-            Console.WriteLine("Věk: {0}",Vek);
-            //Console.WriteLine("{0}",zprava);
-            Console.WriteLine("Vloženo: {0}",Datum);
-        }    
+            Console.WriteLine("Jméno: {0}", Jmeno);
+            Console.WriteLine("Věk: {0}", Vek);
+            Console.WriteLine("{0}", zprava);
+            Console.WriteLine("Vloženy data: {0}", Datum);
+        }
 
+        //Zatím nic neděl - tato třída je v procesu
+        sealed private class Obleceni
+        {
+            private string OblibenaBarva { get; set; }
+            private int CisloBot { get; set; }
+
+        }
     }
 }
