@@ -33,14 +33,15 @@ namespace Databaze
         /// Přidání osoby do databáze
         /// </summary>
         public void PridatOsobu()
-        {            
+        {       
+            DateTime datum= DateTime.Now;
             Console.Write("Zadej jméno: ");
             string jmeno=Console.ReadLine();
             Console.Write("Zadej věk: ");
             int vek;
             while(!int.TryParse(Console.ReadLine(), out vek))
                 Console.WriteLine("Zadej prosím věk v číselné podobě");
-            clovek= new Clovek(jmeno,vek);
+            clovek= new Clovek(jmeno,vek,datum);
             lide.Add(clovek);
             Console.WriteLine("Osoba byla předána do databáze");
         }
@@ -52,8 +53,22 @@ namespace Databaze
             foreach (var item in lide)
             {
                 Console.WriteLine(item);
-                Console.WriteLine("-------------------------------------------------------------------");
+                //clovek.VypisOsobu();
+                Console.WriteLine(VypisPomlcky());
             }
+        }
+        /// <summary>
+        /// Vypíše pomlčky do linky pod text
+        /// </summary>
+        /// <returns></returns>
+        public string VypisPomlcky()
+        {
+            string s = "-";
+            for (int i = 0; i < 80; i++)
+            {
+                s += "-";
+            }
+            return s;
         }
     }
 }

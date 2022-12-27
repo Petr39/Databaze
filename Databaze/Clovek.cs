@@ -20,10 +20,17 @@
         private string zprava;
 
 
-        public Clovek(string jmeno, int vek)
+        /// <summary>
+        /// Aktuální datum při vložení osoby
+        /// </summary>
+        private DateTime Datum;
+
+
+        public Clovek(string jmeno, int vek, DateTime datum)
         {
             Jmeno = jmeno;
             Vek = vek;
+            Datum= datum;
         }
 
         /// <summary>
@@ -45,7 +52,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("{0} má {1} roků a {2}", Jmeno, Vek, JePlnolety());
+            return String.Format("{0} má {1} roků a {2} - datum vložení: {3}", Jmeno, Vek, JePlnolety(),Datum);
         }
 
         /// <summary>
@@ -55,7 +62,8 @@
         {
             Console.WriteLine("Jméno: {0}",Jmeno);
             Console.WriteLine("Věk: {0}",Vek);
-            Console.WriteLine("{0}",zprava);
+            //Console.WriteLine("{0}",zprava);
+            Console.WriteLine("Vloženo: {0}",Datum);
         }
 
     }

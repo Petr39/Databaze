@@ -16,18 +16,21 @@ while (pokracovat)
     string volba = Console.ReadLine();
     switch (volba)
     {
-        case "1":
+        
+        case "1":            
             seznam.PridatOsobu();
             break;
         case "2":
+            Console.Clear();
             seznam.VypisOsoby();
+            Console.WriteLine("Pro pokračování stiskni Enter");
             break;
         case "3":
             Console.WriteLine("Díky za použití aplikace");
             pokracovat = false;
             break;
         default:
-            Console.WriteLine("Špatně zadaná volba");
+            Console.WriteLine("Špatně zadaná volba, zadej znovu ve tvaru čísla ");
             break;
     }
     Console.ReadLine();
