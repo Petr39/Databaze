@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Databaze
+﻿namespace Databaze
 {
     public class SeznamLidi
     {
@@ -20,30 +14,43 @@ namespace Databaze
         /// <summary>
         /// Statický parametr pro přidání pořadového čísla zaměstnance
         /// </summary>
-        private static int Id; 
+        private static int Id = 1;
+
+        private int IdOsoby;
 
         /// <summary>
         /// KOnstruktor s instancí Listu lide
         /// </summary>
         public SeznamLidi()
         {
-            lide= new List<Clovek>();
+            lide = new List<Clovek>();
+
         }
         /// <summary>
         /// Přidání osoby do databáze
         /// </summary>
         public void PridatOsobu()
-        {       
-            DateTime datum= DateTime.Now;
+        {
+            DateTime datum = DateTime.Now;
             Console.Write("Zadej jméno: ");
-            string jmeno=Console.ReadLine();
+            string jmeno = Console.ReadLine();
             Console.Write("Zadej věk: ");
             int vek;
-            while(!int.TryParse(Console.ReadLine(), out vek))
+            while (!int.TryParse(Console.ReadLine(), out vek))
                 Console.WriteLine("Zadej prosím věk v číselné podobě");
-            clovek= new Clovek(jmeno,vek,datum);
-            lide.Add(clovek);
-            Console.WriteLine("Osoba byla předána do databáze");
+            IdOsoby = Id;
+            Id++;
+            clovek = new Clovek(jmeno, vek, datum, IdOsoby);
+            if (clovek != null)
+            {
+                lide.Add(clovek);
+            //Console.WriteLine(UkladamData());
+            Console.WriteLine("Osoba byla přidána do databáze");
+            }
+            else
+            {
+                Console.WriteLine("Chyba v ukládání");
+            }
         }
         /// <summary>
         /// Vypsání osob ze seznamu
@@ -67,6 +74,21 @@ namespace Databaze
             for (int i = 0; i < 80; i++)
             {
                 s += "-";
+            }
+            return s;
+        }
+        /// <summary>
+        /// Simulace ukládání dat 
+        /// </summary>
+        /// <returns></returns>
+        public string UkladamData()
+        {
+            Console.Write("Ukládám");
+            string s = ".";
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(400);
+                Console.Write(s);
             }
             return s;
         }

@@ -1,10 +1,16 @@
 ﻿using Databaze;
 
+
+//Instance seznamu lidí 
 SeznamLidi seznam = new SeznamLidi();
+//Uvítací zpráva - nic víc
 Console.WriteLine("Vítej, zde můžeš přidávat lidi do databáze");
+//Definice atributu pro pokračování cyklu menu
 bool pokracovat = true;
 Console.WriteLine("");
 Console.ReadLine();
+
+//Cyklus menu databáze
 while (pokracovat)
 {
     Console.Clear();

@@ -13,11 +13,17 @@
         /// <summary>
         /// Vlastnost plnoletosti, když je víc jak 18 let
         /// </summary>
-        private bool Plnolety => Vek > 18;
+        private bool Plnolety => Vek >= 18;
+
+
+
+        private bool Mrtev => Vek > 100;
         /// <summary>
         /// Vlastnost privátní zprávy o plnoletosti ve stringu
         /// </summary>
         private string zprava;
+
+         public int Poradi { get;private set; }
 
 
         /// <summary>
@@ -26,24 +32,27 @@
         private DateTime Datum;
 
 
-        public Clovek(string jmeno, int vek, DateTime datum)
+        public Clovek(string jmeno, int vek, DateTime datum, int poradi)
         {
             Jmeno = jmeno;
             Vek = vek;
-            Datum= datum;
+            Datum = datum;
+            Poradi = poradi;
         }
 
         /// <summary>
         /// Vrátí text, jestli člověk je plnoletý/á
         /// </summary>
         /// <returns></returns>
-        public string JePlnolety()
+        public string JePlnoletyANaZivu()
         {
             zprava = "";
             if (Plnolety)
-                zprava = "je plnoletý/á";
-            else
-                zprava = "není plnoletý/á";
+            {
+                if (Mrtev)zprava = " už nežije";
+                else zprava = "je plnoletý/á";           
+            }
+            else zprava = "není plnoletý/á";
             return zprava;
         }
         /// <summary>
@@ -52,7 +61,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("{0} má {1} roků a {2} - datum vložení: {3}", Jmeno, Vek, JePlnolety(),Datum);
+            return String.Format("ID:{0}  {1}  {2} roků a {3} - datum vložení: {4}",Poradi, Jmeno, Vek, JePlnoletyANaZivu(),Datum);
         }
 
         /// <summary>
@@ -64,7 +73,7 @@
             Console.WriteLine("Věk: {0}",Vek);
             //Console.WriteLine("{0}",zprava);
             Console.WriteLine("Vloženo: {0}",Datum);
-        }
+        }    
 
     }
 }
