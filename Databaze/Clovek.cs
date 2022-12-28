@@ -28,21 +28,20 @@
 
         public int Poradi { get; private set; }
 
-
+       
         /// <summary>
         /// Aktuální datum při vložení osoby
         /// </summary>
         private DateTime Datum;
+        private SeznamLidi seznamZkouska=new SeznamLidi();  
 
-
-        public Clovek(string jmeno, int vek, DateTime datum, int poradi)
+        public Clovek(string jmeno, int vek, DateTime datum)
         {
             Jmeno = jmeno;
             Vek = vek;
             Datum = datum;
-            Poradi = poradi;
+           
         }
-
         /// <summary>
         /// Vrátí text, jestli člověk je plnoletý/á
         /// </summary>
@@ -64,7 +63,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("ID:CLO{0}  {1} ", Poradi, Jmeno);
+            return String.Format("{0}  {1} ", Jmeno, Vek);
         }
 
         /// <summary>
@@ -72,19 +71,18 @@
         /// </summary>
         public void VypisOsobu()
         {
+            Console.ForegroundColor = ConsoleColor.Red;            
             Console.WriteLine("Jméno: {0}", Jmeno);
             Console.WriteLine("Věk: {0}", Vek);
             Console.WriteLine("{0}", JePlnoletyANaZivu());
-            Console.WriteLine("Vloženy data: {0}", Datum);
+            Console.WriteLine("Osoba vložena: {0}", (Datum.Year,Datum.Month,Datum.Day));            
+            Console.ResetColor();
         }
-
-        //Zatím nic neděl - tato třída je v procesu
+        //Zatím nic nedělá - tato třída je v procesu
         sealed private class Obleceni
         {
             private string OblibenaBarva { get; set; }
-            private int CisloBot { get; set; }
-
-           
+            private int CisloBot { get; set; }           
         }
     }
 }

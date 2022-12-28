@@ -17,24 +17,34 @@ while (pokracovat)
     Console.WriteLine("Zadej volbu");
     Console.WriteLine("1 - Přidat osobu");
     Console.WriteLine("2 - Vypsat osoby");
-    Console.WriteLine("3 - Konec");
-
+    Console.WriteLine("3 - Smazat osobu");
+    Console.WriteLine("4 - Uložit do souboru");
+    Console.WriteLine("5 - Konec");
+    
     string volba = Console.ReadLine();
     switch (volba)
     {        
         case "1":            
             seznam.PridatOsobu();
             break;
-        case "2":
+        case "2":    
             Console.Clear();
-            seznam.VypisOsoby();
+            seznam.VypisDataOsoby();
             Console.WriteLine();
             Console.WriteLine("Pro pokračování stiskni Enter");
             break;
         case "3":
+            Console.Clear();
+            seznam.SmazatOsobu();    
+            Console.WriteLine("Pro pokračování stiskni Enter");
+            break;
+        case "4":
+            seznam.UlozitSeznamDoSouboru();
+            break;
+        case "5":
             Console.WriteLine("Díky za použití aplikace");
             pokracovat = false;
-            break;            
+            break;
         default:
             Console.WriteLine("Špatně zadaná volba, zadej znovu ve tvaru čísla ");
             break;

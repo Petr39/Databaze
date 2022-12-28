@@ -1,8 +1,13 @@
-﻿namespace Databaze
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Databaze
 {
     public class SeznamLidi
     {
-
+        /// <summary>
+        /// Instance slovníku, kde s ebudou ukládat osoby a jejich ID 
+        /// </summary>
+        private Dictionary<int, Clovek> zkouska;
         /// <summary>
         /// Instance lidí, kteří se přidají
         /// </summary>
@@ -15,7 +20,9 @@
         /// Statický parametr pro přidání pořadového čísla zaměstnance
         /// </summary>
         private static int Id = 1;
-
+        /// <summary>
+        /// Inikátní Id, které je přiřazeno jako Klíč ve slovníku Dictionary<Klíč,Clovek>
+        /// </summary>
         private int IdOsoby;
 
         /// <summary>
@@ -24,7 +31,7 @@
         public SeznamLidi()
         {
             lide = new List<Clovek>();
-
+            zkouska = new Dictionary<int, Clovek>();
         }
         /// <summary>
         /// Přidání osoby do databáze
@@ -39,12 +46,12 @@
             while (!int.TryParse(Console.ReadLine(), out vek))
                 Console.WriteLine("Zadej prosím věk v číselné podobě");
             int UnikatniId;
-            IdOsoby = Id;
-            UnikatniId = IdOsoby;
-            clovek = new Clovek(jmeno, vek, datum, UnikatniId);
+
+            UnikatniId = Id;
+            clovek = new Clovek(jmeno, vek, datum);
             if (clovek != null)
             {
-                lide.Add(clovek);
+                    zkouska.Add(UnikatniId, clovek);
                 Id++;
                 //Console.WriteLine(UkladamData());
                 Console.WriteLine("Osoba byla přidána do databáze");
@@ -59,20 +66,17 @@
         /// </summary>
         public void VypisOsoby()
         {
-            foreach (var item in lide)
+            foreach (var item in zkouska)
             {
-                Console.WriteLine(item);               
+                Console.WriteLine("ID: " + item.Key.ToString() + "  " + item.Value);
+                item.ToString();
                 Console.WriteLine(VypisPomlcky());
             }
-
-            Console.WriteLine("Zadej ID osoby pro víc informací....");
-            int IdOsoby = int.Parse(Console.ReadLine());
-            NajdiOsobu(IdOsoby);
         }
         /// <summary>
         /// Vypíše pomlčky do linky pod text
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public string VypisPomlcky()
         {
             string s = "-";
@@ -97,18 +101,52 @@
             }
             return s;
         }
-
         /// <summary>
-        /// Vypíše osoby podle zadaného ID
+        /// Smazání osoby ze seznamu
         /// </summary>
-        /// <param name="cislo"></param>
-        public void NajdiOsobu(int cislo)
-        {         
-            var osoba = lide.Where(a => a.Poradi == cislo);
-            foreach (var item in osoba)
-            {                
-               item.VypisOsobu();
+        public void SmazatOsobu()
+        {
+            VypisOsoby();
+            Console.WriteLine("Zadej ID osoby pro smazánní...");
+            int IdOsoby;
+            while (!int.TryParse(Console.ReadLine(), out IdOsoby))
+                Console.WriteLine("Zadej ID pro smazání prosím");
+            //Validace, jestli je ID v seznamu
+            if (zkouska.Keys.Contains(IdOsoby))
+            {
+                Console.WriteLine("Osoba smazána");
+                zkouska.Remove(IdOsoby);
             }
+            else
+                Console.WriteLine("Osoba nenalezena");
+
+        }
+        /// <summary>
+        /// Vypsání dat o osobě
+        /// </summary>
+        public void VypisDataOsoby()
+        {
+            foreach (var item in zkouska)
+            {
+
+                item.Value.VypisOsobu();
+
+            }
+        }
+        /// <summary>
+        /// Uložení osob do textového souboru
+        /// </summary>
+        public void UlozitSeznamDoSouboru()
+        {
+            using (StreamWriter sw = new StreamWriter("textak.txt"))
+            {
+                foreach (var item in zkouska)
+                {
+                    sw.WriteLine("ID: "+item.Key.ToString()+" " + item.Value);
+                }
+                sw.Flush();
+            }
+            Console.WriteLine("Uloženo!");
         }
     }
 }
