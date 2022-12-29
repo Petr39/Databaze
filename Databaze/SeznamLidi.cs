@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿
 
 namespace Databaze
 {
@@ -144,6 +144,7 @@ namespace Databaze
                 foreach (var item in lidi)
                 {
                     sw.WriteLine("ID: "+item.Key.ToString()+" " + item.Value);
+                  
                 }
                 sw.Flush();
             }
