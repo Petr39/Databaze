@@ -14,9 +14,6 @@
         /// Vlastnost plnoletosti, když je víc jak 18 let
         /// </summary>
         private bool Plnolety => Vek >= 18;
-
-        
-
         /// <summary>
         /// Vlastnost o úmrtí
         /// </summary>
@@ -25,9 +22,10 @@
         /// Vlastnost privátní zprávy o plnoletosti ve stringu
         /// </summary>
         private string zprava;
-
+        /// <summary>
+        /// Zatím nic nedělá
+        /// </summary>
         public int Poradi { get; private set; }
-
        
         /// <summary>
         /// Aktuální datum při vložení osoby
@@ -70,19 +68,24 @@
         /// Vypsání osoby v seznamu databáze
         /// </summary>
         public void VypisOsobu()
-        {
+        {            
             Console.ForegroundColor = ConsoleColor.Red;            
             Console.WriteLine("Jméno: {0}", Jmeno);
             Console.WriteLine("Věk: {0}", Vek);
             Console.WriteLine("{0}", JePlnoletyANaZivu());
             Console.WriteLine("Osoba vložena: {0}", (Datum.Year,Datum.Month,Datum.Day));            
             Console.ResetColor();
-        }
-        //Zatím nic nedělá - tato třída je v procesu
-        sealed private class Obleceni
+        }        
+        //Zatím nic nedělá - tato třída je v procesu a je zapečetěná
+         sealed private class Obleceni
         {
             private string OblibenaBarva { get; set; }
-            private int CisloBot { get; set; }           
+            private int CisloBot { get; set; } 
+            
+            private enum Barva
+            {
+                Červená=1,Bílá=2,Modrá=4,Hnědá=8,Zelená=16
+            }
         }
     }
 }

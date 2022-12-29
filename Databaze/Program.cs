@@ -20,8 +20,11 @@ while (pokracovat)
     Console.WriteLine("3 - Smazat osobu");
     Console.WriteLine("4 - Uložit do souboru");
     Console.WriteLine("5 - Konec");
-    
-    string volba = Console.ReadLine();
+
+    string volba = Console.ReadKey().KeyChar.ToString();
+    Thread.Sleep(200);
+    Console.Clear();
+    //string volba = Console.ReadLine();
     switch (volba)
     {        
         case "1":            

@@ -119,7 +119,6 @@ namespace Databaze
             }
             else
                 Console.WriteLine("Osoba nenalezena");
-
         }
         /// <summary>
         /// Vypsání dat o osobě
@@ -128,9 +127,7 @@ namespace Databaze
         {
             foreach (var item in zkouska)
             {
-
                 item.Value.VypisOsobu();
-
             }
         }
         /// <summary>
@@ -146,6 +143,8 @@ namespace Databaze
                 }
                 sw.Flush();
             }
+            UkladamData();
+            Console.Clear();
             Console.WriteLine("Uloženo!");
         }
     }
