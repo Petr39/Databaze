@@ -7,7 +7,7 @@ namespace Databaze
         /// <summary>
         /// Instance slovníku, kde s ebudou ukládat osoby a jejich ID 
         /// </summary>
-        private Dictionary<int, Clovek> zkouska;
+        private Dictionary<int, Clovek> lidi;
         /// <summary>
         /// Instance lidí, kteří se přidají
         /// </summary>
@@ -31,16 +31,21 @@ namespace Databaze
         public SeznamLidi()
         {
             lide = new List<Clovek>();
-            zkouska = new Dictionary<int, Clovek>();
+            lidi = new Dictionary<int, Clovek>();
         }
         /// <summary>
         /// Přidání osoby do databáze
         /// </summary>
         public void PridatOsobu()
         {
-            DateTime datum = DateTime.Now;
-            Console.Write("Zadej jméno: ");
-            string jmeno = Console.ReadLine();
+            DateTime datum = DateTime.Now;            
+            string jmeno = "";
+            while (jmeno == string.Empty)
+            {            
+                Console.Write("Zadej jméno:");
+                jmeno= Console.ReadLine();
+            }
+            
             Console.Write("Zadej věk: ");
             int vek;
             while (!int.TryParse(Console.ReadLine(), out vek))
@@ -51,9 +56,8 @@ namespace Databaze
             clovek = new Clovek(jmeno, vek, datum);
             if (clovek != null)
             {
-                    zkouska.Add(UnikatniId, clovek);
-                Id++;
-                //Console.WriteLine(UkladamData());
+                    lidi.Add(UnikatniId, clovek);
+                Id++;               
                 Console.WriteLine("Osoba byla přidána do databáze");
             }
             else
@@ -66,7 +70,7 @@ namespace Databaze
         /// </summary>
         public void VypisOsoby()
         {
-            foreach (var item in zkouska)
+            foreach (var item in lidi)
             {
                 Console.WriteLine("ID: " + item.Key.ToString() + "  " + item.Value);
                 item.ToString();
@@ -112,10 +116,10 @@ namespace Databaze
             while (!int.TryParse(Console.ReadLine(), out IdOsoby))
                 Console.WriteLine("Zadej ID pro smazání prosím");
             //Validace, jestli je ID v seznamu
-            if (zkouska.Keys.Contains(IdOsoby))
+            if (lidi.Keys.Contains(IdOsoby))
             {
                 Console.WriteLine("Osoba smazána");
-                zkouska.Remove(IdOsoby);
+                lidi.Remove(IdOsoby);
             }
             else
                 Console.WriteLine("Osoba nenalezena");
@@ -125,7 +129,7 @@ namespace Databaze
         /// </summary>
         public void VypisDataOsoby()
         {
-            foreach (var item in zkouska)
+            foreach (var item in lidi)
             {
                 item.Value.VypisOsobu();
             }
@@ -137,7 +141,7 @@ namespace Databaze
         {
             using (StreamWriter sw = new StreamWriter("textak.txt"))
             {
-                foreach (var item in zkouska)
+                foreach (var item in lidi)
                 {
                     sw.WriteLine("ID: "+item.Key.ToString()+" " + item.Value);
                 }

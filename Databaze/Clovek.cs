@@ -1,10 +1,12 @@
-﻿namespace Databaze
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Databaze
 {
     public class Clovek
     {
         /// <summary>
         /// Jméno a příjmení osoby
-        /// </summary>
+        /// </summary>           
         private string Jmeno { get; set; }
         /// <summary>
         /// Věk osoby
@@ -69,14 +71,15 @@
         /// </summary>
         public void VypisOsobu()
         {            
-            Console.ForegroundColor = ConsoleColor.Red;            
+            Console.ForegroundColor = ConsoleColor.Green;            
             Console.WriteLine("Jméno: {0}", Jmeno);
             Console.WriteLine("Věk: {0}", Vek);
             Console.WriteLine("{0}", JePlnoletyANaZivu());
-            Console.WriteLine("Osoba vložena: {0}", (Datum.Year,Datum.Month,Datum.Day));            
+            Console.WriteLine("Osoba vložena: {0}", Datum);            
             Console.ResetColor();
+            Console.WriteLine();
         }        
-        //Zatím nic nedělá - tato třída je v procesu a je zapečetěná
+        //Zatím nic nedělá - tato třída je v procesu a je zapečetěna
          sealed private class Obleceni
         {
             private string OblibenaBarva { get; set; }
